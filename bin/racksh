@@ -1,0 +1,4 @@
+#!/bin/sh
+
+irb -r ~/workspace/racksh/racksh.rb
+
