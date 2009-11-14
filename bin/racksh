@@ -1,4 +1,10 @@
-#!/bin/sh
+#!/usr/bin/env ruby
 
-irb -r ~/workspace/racksh/racksh.rb
+ENV['CONFIG_RU'] = (ARGV[0] == "-c" ? ARGV.shift(2)[1] : 'config.ru')
 
+if ARGV.empty?
+  exec "irb -r racksh"
+else
+  require 'racksh'
+  p eval(ARGV.join(" "))
+end
