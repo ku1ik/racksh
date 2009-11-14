@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.email = %q{marcin.kulik@gmail.com}
   s.has_rdoc = false
   s.homepage = %q{http://github.com/sickill/racksh}
-  s.summary = %q{Console for any Rack based web app}
+  s.summary = %q{Console for any Rack based ruby web app}
   s.executables = ["racksh"]
   s.files = [ "bin/racksh", "lib/racksh.rb" ]
 end
