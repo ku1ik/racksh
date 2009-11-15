@@ -4,9 +4,9 @@ racksh
 About
 -----
 
-**racksh** (pronounced _rack shell_) is a console for Rack based ruby web applications. 
+**racksh** (Rack::Shell) is a console for Rack based ruby web applications.
 
-It's like Rails' _script/console_ or Merb's _merb -i_, but for any app built on Rack. You can use it to load application environment for Rails, Merb, Sinatra, Camping, Ramaze or your own framework provided there is _config.ru_ file in app's root directory. 
+It's like Rails' _script/console_ or Merb's _merb -i_, but for any app built on Rack. You can use it to load application environment for Rails, Merb, Sinatra, Camping, Ramaze or your own framework provided there is _config.ru_ file in app's root directory.
 
 It's purpose is to allow developer to introspect his application and/or make some initial setup, ie. running _DataMapper.auto_migrate!_. It's mainly aimed at apps that don't have similar facility (like Sinatra) but can be used without problems with Merb or Rails apps.
 
@@ -34,7 +34,7 @@ Specifying location of config.ru:
 Executing ruby code inside application environment and printing results:
 
     racksh Order.all
-    racksh "Order.first :created_at => Date.today" 
+    racksh "Order.first :created_at => Date.today"
 
 Specifying Rack environment (default is development):
 
