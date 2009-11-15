@@ -1,7 +1,8 @@
 #!/usr/bin/env ruby
 
 if ARGV.empty?
-  exec "irb -r racksh"
+  racksh_path = File.join(File.expand_path(File.dirname(__FILE__)), "..", "lib", "racksh.rb")
+  exec "irb -r #{racksh_path}"
 else
   require 'racksh'
   p eval(ARGV.join(" "))
