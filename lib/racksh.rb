@@ -9,7 +9,7 @@ config_ru = ENV['CONFIG_RU'] || 'config.ru'
 begin
   load config_ru
   version = File.read(File.join(File.dirname(__FILE__), '..', 'VERSION'))
-  puts "Rack::Shell v#{version} started." if ARGV.empty?
+  puts "Rack::Shell v#{version} started in #{ENV['RACK_ENV']} environment."
 rescue LoadError => e
   if e.message =~ /config\.ru$/
     puts "Rack::Shell couldn't find #{config_ru}"
