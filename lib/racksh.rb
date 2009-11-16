@@ -1,16 +1,26 @@
+require "rubygems"
+require "rack"
+require "rack/test"
+
 ENV['RACK_ENV'] ||= 'development'
 
-def use(*args, &blk); end
-def run(*args, &blk); end
-def map(*args, &blk); end
-
-config_ru = ENV['CONFIG_RU'] || 'config.ru'
+module Rack
+  class Shell
+    include Rack::Test::Methods
+    attr_reader :app
+    def initialize(app)
+      @app = app
+    end
+  end
+end
 
 begin
-  load config_ru
+  config_ru = ENV['CONFIG_RU'] || 'config.ru'
+  rack_application = eval("Rack::Builder.new { #{File.read(config_ru)} }")
+  $rack = Rack::Shell.new(rack_application)
   version = File.read(File.join(File.dirname(__FILE__), '..', 'VERSION')).strip
   puts "Rack::Shell v#{version} started in #{ENV['RACK_ENV']} environment."
-rescue LoadError => e
+rescue Errno::ENOENT => e
   if e.message =~ /config\.ru$/
     puts "Rack::Shell couldn't find #{config_ru}"
     exit(1)
