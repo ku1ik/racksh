@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.name = %q{racksh}
   s.version = File.read("VERSION")
   s.platform = Gem::Platform::RUBY
-  s.date = %q{2009-11-16}
+  s.date = %q{2009-11-17}
   s.authors = ["Marcin Kulik"]
   s.email = %q{marcin.kulik@gmail.com}
   s.has_rdoc = false
