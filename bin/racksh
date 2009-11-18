@@ -1,8 +1,10 @@
 #!/usr/bin/env ruby
 
+ENV['RACK_ENV'] ||= 'development'
+
 if ARGV.empty?
   racksh_path = File.join(File.expand_path(File.dirname(__FILE__)), "..", "lib", "racksh.rb")
-  exec "irb -r #{racksh_path}"
+  exec "irb -r irb/completion -r #{racksh_path} --simple-prompt"
 else
   require 'racksh'
   p eval(ARGV.join(" "))

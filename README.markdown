@@ -10,7 +10,8 @@ directory.
 
 It's purpose is to allow developer to introspect his application and/or make some initial setup. You can for example run 
 _DataMapper.auto_migrate!_ or make a request to _/users/666_ and check response details. It's mainly aimed at apps that don't 
-have console-like component (ie. app built with Sinatra) but all frameworks can benefit from interactive Rack stack introspection.
+have console-like component (ie. app built with Sinatra) but all frameworks can benefit from interactive Rack stack and request
+introspection.
 
 ## How it works?
 
@@ -28,8 +29,8 @@ Additionally it exposes _$rack_ variable which allows you to make simulated HTTP
 To start racksh session run following inside rack application directory (containing config.ru file):
 
     % racksh
-    Rack::Shell v0.9.3 started in development environment.
-    irb(main):001:0> 
+    Rack::Shell v0.9.4 started in development environment.
+    >>
 
 Specifying location of config.ru:
 
@@ -43,14 +44,14 @@ Executing ruby code inside application environment and printing results:
 Specifying Rack environment (default is development):
 
     % RACK_ENV=production racksh
-    Rack::Shell v0.9.3 started in production environment.
-    irb(main):001:0> 
+    Rack::Shell v0.9.4 started in production environment.
+    >>
     
 ### Making simulated HTTP requests to your app
 
     % racksh
-    Rack::Shell v0.9.3 started in development environment.
-    irb(main):001:0> $rack.get "/"
+    Rack::Shell v0.9.4 started in development environment.
+    >> $rack.get "/"
     => #<Rack::MockResponse:0xb68fa7bc @body="<html>...", @headers={"Content-Type"=>"text/html", "Content-Length"=>"1812"}, @status=200, ...
 
 _$rack_ variable contains following methods (thanks to [rack-test](http://github.com/brynary/rack-test) gem):
@@ -85,15 +86,18 @@ _$rack_ variable contains following methods (thanks to [rack-test](http://github
     # follow redirect from previous request
     $rack.follow_redirect!
     
-    # access your Rack app
-    $rack.app
-
     # last request object
     $rack.last_request
 
     # last response object
     $rack.last_response
 
+    # access your Rack app
+    $rack.app
+
+    # name of environment
+    $rack.env
+    
 Check [test.rb from brynary's rack-test](http://github.com/brynary/rack-test/blob/master/lib/rack/test.rb) for implementation of 
 above methods.
  
