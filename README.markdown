@@ -9,7 +9,7 @@ environment for Rails, Merb, Sinatra, Camping, Ramaze or your own framework prov
 directory.
 
 It's purpose is to allow developer to introspect his application and/or make some initial setup. You can for example run 
-_DataMapper.auto_migrate!_ or make a request to "/users/666" and check response details. It's mainly aimed at apps that don't 
+_DataMapper.auto_migrate!_ or make a request to _/users/666_ and check response details. It's mainly aimed at apps that don't 
 have console-like component (ie. app built with Sinatra) but all frameworks can benefit from interactive Rack stack introspection.
 
 ## How it works?
@@ -46,7 +46,7 @@ Specifying Rack environment (default is development):
     Rack::Shell v0.9.3 started in production environment.
     irb(main):001:0> 
     
-### Making simulated HTTP requests to your app:
+### Making simulated HTTP requests to your app
 
     % racksh
     Rack::Shell v0.9.3 started in development environment.
@@ -87,6 +87,12 @@ _$rack_ variable contains following methods (thanks to [rack-test](http://github
     
     # access your Rack app
     $rack.app
+
+    # last request object
+    $rack.last_request
+
+    # last response object
+    $rack.last_response
 
 Check [test.rb from brynary's rack-test](http://github.com/brynary/rack-test/blob/master/lib/rack/test.rb) for implementation of 
 above methods.
