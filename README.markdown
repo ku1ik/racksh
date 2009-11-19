@@ -107,6 +107,23 @@ Examples:
     $rack.header "User-Agent", "Firefox"
     $rack.post "/users", :user => { :name => "Jola", :email => "jola@misi.ak" }
 
+### Configuration files
+
+Rack::Shell supports configuration file _.rackshrc_ which is loaded from two places during startup: user's home dir and 
+application directory (in this order). You can put any ruby code in it, but it's purpose is to setup your session, ie. setting 
+headers which will be used for all $rack.get/post/... requests.
+
+For example to set user agent to Firefox and re-migrate db if loaded environment is _test_ put following in _.rackshrc_:
+
+    $rack.header "User-Agent", "Firefox"
+    DataMapper.auto_migrate! if $rack.env == "test"
+    
+You can also make requests:
+
+    $rack.put "/signin", :login => "jola", :password => "misiacz"
+    
+This will ensure you are always logged in when you start _racksh_.
+
 ## Bugs & feature requests
 
 Please report bugs and/or feature requests on the github issue tracker for the project located [here](http://github.com/sickill/racksh/issues).
