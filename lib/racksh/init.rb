@@ -3,6 +3,10 @@ require 'rack'
 module Rack
   module Shell
     def self.start!
+      # prevent STDOUT & STDERR to be reopened (apps do this to be able to log under Passenger)
+      def STDOUT.reopen(*args); end
+      def STDERR.reopen(*args); end
+      
       # build Rack app
       config_ru = ENV['CONFIG_RU'] || 'config.ru'
       rack_app = Object.class_eval("Rack::Builder.new { #{::File.read(config_ru)} }")
