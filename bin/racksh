@@ -2,10 +2,11 @@
 
 ENV['RACK_ENV'] ||= 'development'
 
+boot_path = File.expand_path(File.join(File.dirname(__FILE__), "..", "lib", "racksh", "boot.rb"))
+
 if ARGV.empty?
-  racksh_path = File.join(File.expand_path(File.dirname(__FILE__)), "..", "lib", "racksh.rb")
-  exec "irb -r irb/completion -r #{racksh_path} --simple-prompt"
+  exec "irb -r irb/completion -r #{boot_path} --simple-prompt"
 else
-  require 'racksh'
+  require boot_path
   p eval(ARGV.join(" "))
 end
