@@ -11,7 +11,7 @@ module Rack
       
       # build Rack app
       config_ru = ENV['CONFIG_RU'] || 'config.ru'
-      rack_app = Object.class_eval("Rack::Builder.new { #{File.read(config_ru)} }")
+      rack_app = Object.class_eval("Rack::Builder.new { #{File.read(config_ru)} }", config_ru)
       $rack = Rack::Shell::Session.new(rack_app)
       
       # run ~/.rackshrc
