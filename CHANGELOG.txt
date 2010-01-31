@@ -1,3 +1,7 @@
+=== 0.9.5 / 2010-01-31
+
+ * added application reloading with "reload!"
+
 === 0.9.4 / 2009-11-19
 
  * added loading irb/completion
