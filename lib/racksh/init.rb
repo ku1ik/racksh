@@ -1,16 +1,20 @@
 require 'rack'
+dir = File.expand_path(File.dirname(__FILE__))
+%w(session version init).each { |f| require File.join(dir, f) }
+
+def reload!
+  puts "Rack::Shell reloading..."
+  Process.exit(1)
+end
 
 module Rack
   module Shell
     File = ::File
     
-    def self.start!
-      # prevent STDOUT & STDERR to be reopened (apps do this to be able to log under Passenger)
-      def STDOUT.reopen(*args); end
-      def STDERR.reopen(*args); end
+    def self.init
+      config_ru = ENV['CONFIG_RU']
       
       # build Rack app
-      config_ru = ENV['CONFIG_RU'] || 'config.ru'
       rack_app = Object.class_eval("Rack::Builder.new { #{File.read(config_ru)} }", config_ru)
       $rack = Rack::Shell::Session.new(rack_app)
       

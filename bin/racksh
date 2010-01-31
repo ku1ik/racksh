@@ -1,12 +1,27 @@
 #!/usr/bin/env ruby
 
 ENV['RACK_ENV'] ||= 'development'
+ENV['CONFIG_RU'] ||= 'config.ru'
 
-boot_path = File.expand_path(File.join(File.dirname(__FILE__), "..", "lib", "racksh", "boot.rb"))
+require File.expand_path(File.join(File.dirname(__FILE__), "..", "lib", "racksh", "init.rb"))
+
+# prevent STDOUT & STDERR to be reopened (apps do this to be able to log under Passenger)
+def STDOUT.reopen(*args); end
+def STDERR.reopen(*args); end
 
 if ARGV.empty?
-  exec "irb -r irb/completion -r #{boot_path} --simple-prompt"
+  require "irb"
+  require "irb/completion"
+  loop do
+    pid = fork do
+      Rack::Shell.init
+      IRB.conf[:PROMPT_MODE] = :SIMPLE
+      IRB.start
+    end
+    Process.wait(pid)
+    break if $?.exitstatus == 0
+  end
 else
-  require boot_path
+  Rack::Shell.init
   p eval(ARGV.join(" "))
 end
