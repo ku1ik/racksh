@@ -4,7 +4,7 @@ dir = File.expand_path(File.dirname(__FILE__))
 
 def reload!
   puts "Rack::Shell reloading..."
-  Process.exit(1)
+  Process.exit(255)
 end
 
 module Rack

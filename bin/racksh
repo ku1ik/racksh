@@ -19,7 +19,7 @@ if ARGV.empty?
       IRB.start
     end
     Process.wait(pid)
-    break if $?.exitstatus == 0
+    break unless $?.exitstatus == 255
   end
 else
   Rack::Shell.init
