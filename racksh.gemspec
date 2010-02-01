@@ -1,10 +1,11 @@
 # -*- encoding: utf-8 -*-
+require File.join(File.dirname(__FILE__), "lib", "racksh", "version.rb")
 
 Gem::Specification.new do |s|
   s.name = %q{racksh}
-  s.version = "0.9.6"
+  s.version = Rack::Shell::VERSION
   s.platform = Gem::Platform::RUBY
-  s.date = %q{2010-01-31}
+  s.date = %q{2010-02-01}
   s.authors = ["Marcin Kulik"]
   s.email = %q{marcin.kulik@gmail.com}
   s.has_rdoc = false
