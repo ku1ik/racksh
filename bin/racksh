@@ -12,14 +12,16 @@ def STDERR.reopen(*args); end
 if ARGV.empty?
   require "irb"
   require "irb/completion"
+  reloaded = false
   loop do
     pid = fork do
-      Rack::Shell.init
+      Rack::Shell.init(!reloaded)
       IRB.conf[:PROMPT_MODE] = :SIMPLE
       IRB.start
     end
     Process.wait(pid)
     break unless $?.exitstatus == 255
+    reloaded = true
   end
 else
   Rack::Shell.init
