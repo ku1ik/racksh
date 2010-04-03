@@ -4,7 +4,7 @@
 
 **racksh** (Rack::Shell) is a console for Rack based ruby web applications.
 
-It's like Rails' _script/console_ or Merb's _merb -i_, but for any app built on Rack. You can use it to load application 
+It's like _script/console_ in Rails or _merb -i_ in Merb, but for any app built on Rack. You can use it to load application 
 environment for Rails, Merb, Sinatra, Camping, Ramaze or your own framework provided there is _config.ru_ file in app's root 
 directory.
 
@@ -20,7 +20,7 @@ Additionally it exposes _$rack_ variable which allows you to make simulated HTTP
 
 ## Installation
 
-    gem install racksh -s http://gemcutter.org
+    gem install racksh
 
 ## Usage
 
@@ -29,7 +29,7 @@ Additionally it exposes _$rack_ variable which allows you to make simulated HTTP
 To start racksh session run following inside rack application directory (containing config.ru file):
 
     % racksh
-    Rack::Shell v0.9.5 started in development environment.
+    Rack::Shell v0.9.7 started in development environment.
     >>
 
 Specifying location of config.ru:
@@ -44,13 +44,13 @@ Executing ruby code inside application environment and printing results:
 Specifying Rack environment (default is development):
 
     % RACK_ENV=production racksh
-    Rack::Shell v0.9.5 started in production environment.
+    Rack::Shell v0.9.7 started in production environment.
     >>
     
 ### Making simulated HTTP requests to your app
 
     % racksh
-    Rack::Shell v0.9.5 started in development environment.
+    Rack::Shell v0.9.7 started in development environment.
     >> $rack.get "/"
     => #<Rack::MockResponse:0xb68fa7bc @body="<html>...", @headers={"Content-Type"=>"text/html", "Content-Length"=>"1812"}, @status=200, ...
 
