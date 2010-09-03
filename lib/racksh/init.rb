@@ -10,22 +10,22 @@ end
 module Rack
   module Shell
     File = ::File
-    
+
     def self.init(print_startup_info=true)
       config_ru = ENV['CONFIG_RU']
-      
+
       # build Rack app
       rack_app = Object.class_eval("Rack::Builder.new { #{File.read(config_ru)} }", config_ru)
       $rack = Rack::Shell::Session.new(rack_app)
-      
+
       # run ~/.rackshrc
       rcfile = File.expand_path("~/.rackshrc")
       eval(File.read(rcfile)) if File.exists?(rcfile)
-      
+
       # run local .rackshrc (from app dir)
       rcfile = File.expand_path(File.join(File.dirname(config_ru), ".rackshrc"))
       eval(File.read(rcfile)) if File.exists?(rcfile)
-      
+
       # print startup info
       if print_startup_info
         if STDOUT.tty? && ENV['TERM'] != 'dumb' # we have color terminal, let's pimp our info!
