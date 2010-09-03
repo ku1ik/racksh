@@ -1,8 +1,5 @@
 #!/usr/bin/env ruby
 
-ENV['RACK_ENV'] ||= 'development'
-ENV['CONFIG_RU'] ||= 'config.ru'
-
 require File.expand_path(File.join(File.dirname(__FILE__), "..", "lib", "racksh", "init.rb"))
 
 # prevent STDOUT & STDERR to be reopened (apps do this to be able to log under Passenger)

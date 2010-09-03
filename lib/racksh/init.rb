@@ -1,4 +1,8 @@
 require 'rack'
+
+ENV['RACK_ENV'] ||= 'development'
+ENV['CONFIG_RU'] ||= 'config.ru'
+
 dir = File.expand_path(File.dirname(__FILE__))
 %w(session version init).each { |f| require File.join(dir, f) }
 
