@@ -29,7 +29,7 @@ Additionally it exposes _$rack_ variable which allows you to make simulated HTTP
 To start racksh session run following inside rack application directory (containing config.ru file):
 
     % racksh
-    Rack::Shell v0.9.8 started in development environment.
+    Rack::Shell v0.9.9 started in development environment.
     >>
 
 Specifying location of config.ru:
@@ -44,13 +44,13 @@ Executing ruby code inside application environment and printing results:
 Specifying Rack environment (default is development):
 
     % RACK_ENV=production racksh
-    Rack::Shell v0.9.8 started in production environment.
+    Rack::Shell v0.9.9 started in production environment.
     >>
     
 ### Making simulated HTTP requests to your app
 
     % racksh
-    Rack::Shell v0.9.8 started in development environment.
+    Rack::Shell v0.9.9 started in development environment.
     >> $rack.get "/"
     => #<Rack::MockResponse:0xb68fa7bc @body="<html>...", @headers={"Content-Type"=>"text/html", "Content-Length"=>"1812"}, @status=200, ...
 
