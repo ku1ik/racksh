@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 require File.join(File.dirname(__FILE__), "lib", "racksh", "version.rb")
+require 'date'
 
 Gem::Specification.new do |s|
   s.name = %q{racksh}
