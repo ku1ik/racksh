@@ -13,7 +13,7 @@ if ARGV.empty?
   loop do
     pid = fork do
       Rack::Shell.init(!reloaded)
-      IRB.conf[:PROMPT_MODE] = :SIMPLE
+      ARGV.concat(['--prompt', 'simple']) unless ARGV.include?('--prompt')
       IRB.start
     end
     Process.wait(pid)
