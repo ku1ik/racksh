@@ -7,14 +7,21 @@ def STDOUT.reopen(*args); end
 def STDERR.reopen(*args); end
 
 if ARGV.empty?
-  require "irb"
-  require "irb/completion"
+  begin
+    require "pry"
+    Interpreter = Pry
+  rescue LoadError
+    require "irb"
+    require "irb/completion"
+    Interpreter = IRB
+  end
+
   reloaded = false
   loop do
     pid = fork do
       Rack::Shell.init(!reloaded)
       ARGV.concat(['--prompt', 'simple']) unless ARGV.include?('--prompt')
-      IRB.start
+      Interpreter.start
     end
     Process.wait(pid)
     break unless $?.exitstatus == 255
