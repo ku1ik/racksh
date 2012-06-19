@@ -16,17 +16,9 @@ if ARGV.empty?
     Interpreter = IRB
   end
 
-  reloaded = false
-  loop do
-    pid = fork do
-      Rack::Shell.init(!reloaded)
-      ARGV.concat(['--prompt', 'simple']) unless ARGV.include?('--prompt')
-      Interpreter.start
-    end
-    Process.wait(pid)
-    break unless $?.exitstatus == 255
-    reloaded = true
-  end
+  Rack::Shell.init
+  ARGV.concat(['--prompt', 'simple']) unless ARGV.include?('--prompt')
+  Interpreter.start
 else
   Rack::Shell.init
   p eval(ARGV.join(" "))

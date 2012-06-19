@@ -8,14 +8,15 @@ dir = File.expand_path(File.dirname(__FILE__))
 
 def reload!
   puts "Rack::Shell reloading..."
-  Process.exit(255)
+  ENV['RACKSH_SKIP_INTRO'] = "1"
+  exec $0
 end
 
 module Rack
   module Shell
     File = ::File
 
-    def self.init(print_startup_info=true)
+    def self.init
       config_ru = ENV['CONFIG_RU']
 
       # build Rack app
@@ -31,7 +32,7 @@ module Rack
       eval(File.read(rcfile)) if File.exists?(rcfile)
 
       # print startup info
-      if print_startup_info
+      unless ENV['RACKSH_SKIP_INTRO']
         if STDOUT.tty? && ENV['TERM'] != 'dumb' # we have color terminal, let's pimp our info!
           env_color = ($rack.env == 'production' ? "\e[31m\e[1m" : "\e[36m\e[1m")
           puts "\e[32m\e[1mRack\e[0m\e[33m\e[1m::\e[0m\e[32m\e[1mShell\e[0m v#{VERSION} started in #{env_color}#{$rack.env}\e[0m environment."

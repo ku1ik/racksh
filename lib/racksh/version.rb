@@ -1,5 +1,5 @@
 module Rack
   module Shell
-    VERSION = '0.9.11'.freeze
+    VERSION = '1.0.0.rc1'.freeze
   end
 end
