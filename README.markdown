@@ -146,5 +146,5 @@ Please report bugs and/or feature requests on the github issue tracker for the p
 
 ## Authors
 
- * Marcin Kulik - [sickill.net](http://sickill.net/)
+ * Marcin Kulik - [ku1ik.com](http://ku1ik.com/)
 
