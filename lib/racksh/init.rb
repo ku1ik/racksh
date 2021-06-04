@@ -20,7 +20,7 @@ module Rack
       config_ru = ENV['CONFIG_RU']
 
       # build Rack app
-      rack_app = Rack::Builder.parse_file(config_ru).first
+      rack_app = Array(Rack::Builder.parse_file(config_ru)).first
       $rack = Rack::Shell::Session.new(rack_app)
 
       # run ~/.rackshrc
