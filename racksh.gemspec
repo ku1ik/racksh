@@ -9,6 +9,7 @@ Gem::Specification.new do |s|
   s.date = Date.today.to_s
   s.authors = ["Marcin Kulik"]
   s.email = %q{marcin.kulik@gmail.com}
+  s.license = 'MIT'
   s.has_rdoc = false
   s.homepage = %q{http://github.com/sickill/racksh}
   s.summary = %q{Console for any Rack based ruby web app}
