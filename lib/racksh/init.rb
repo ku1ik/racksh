@@ -25,11 +25,11 @@ module Rack
 
       # run ~/.rackshrc
       rcfile = File.expand_path("~/.rackshrc")
-      eval(File.read(rcfile)) if File.exists?(rcfile)
+      eval(File.read(rcfile)) if File.exist?(rcfile)
 
       # run local .rackshrc (from app dir)
       rcfile = File.expand_path(File.join(File.dirname(config_ru), ".rackshrc"))
-      eval(File.read(rcfile)) if File.exists?(rcfile)
+      eval(File.read(rcfile)) if File.exist?(rcfile)
 
       # print startup info
       unless ENV['RACKSH_SKIP_INTRO']
