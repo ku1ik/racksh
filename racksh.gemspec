@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.email = %q{marcin.kulik@gmail.com}
   s.license = 'MIT'
   s.has_rdoc = false
-  s.homepage = %q{http://github.com/sickill/racksh}
+  s.homepage = %q{http://github.com/ku1ik/racksh}
   s.summary = %q{Console for any Rack based ruby web app}
   s.executables = ["racksh"]
   s.files = Dir["bin/*"] + Dir["lib/**/*.rb"] + ["README.md", "CHANGELOG.txt"]

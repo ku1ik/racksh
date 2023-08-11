@@ -142,7 +142,7 @@ It will initialize racksh and load rack app. From now on you can use _$rack_.
 
 ## Bugs & feature requests
 
-Please report bugs and/or feature requests on the github issue tracker for the project located [here](http://github.com/sickill/racksh/issues).
+Please report bugs and/or feature requests on the github issue tracker for the project located [here](http://github.com/ku1ik/racksh/issues).
 
 ## Authors
 
